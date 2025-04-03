@@ -67,6 +67,12 @@ public class EstructuraPrincipal {
                         System.out.println("Ejecucion finalizada");
                     }
                 break;
+                case 5:
+                    System.out.println("Hasta Pronto...");
+                    System.exit(0);
+                break;
+                default:
+                    System.out.println("Opcion incorrecta");
             }
         }
     }
@@ -112,9 +118,9 @@ public class EstructuraPrincipal {
         List<Results> results = new ArrayList<>();
         results.add(convierteDatos.fromJson(Json, Results.class));
 
-        if(Json.contains("null")){
+        if (results.isEmpty() || results.get(0).arrayLibros().isEmpty()) {
             throw new NoSeEncontroLibro("Libro no disponible");
-        }else {
+        } else {
             System.out.println("Informacion del libro buscado");
             results.stream()
                     .flatMap(e -> e.arrayLibros().stream())
